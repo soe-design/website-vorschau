@@ -1,0 +1,17 @@
+[Unit]
+Description=Persönlicher KI-Life-Coach
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=@USER@
+WorkingDirectory=@DIR@
+Environment=PATH=@EXTRA_PATH@:/usr/local/bin:/usr/bin:/bin
+Environment=PYTHONUNBUFFERED=1
+ExecStart=@DIR@/.venv/bin/python -m coach.main
+Restart=always
+RestartSec=15
+
+[Install]
+WantedBy=multi-user.target
